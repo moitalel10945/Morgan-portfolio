@@ -38,19 +38,7 @@
         <li>Collaborated remotely, managing tasks, deadlines, and project delivery efficiently</li>
         <li>Focused on problem-solving, performance optimization, and code quality</li>
 
-       </ul>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+       </ul>   
     </section>
   </div>
 </x-guest-layout>

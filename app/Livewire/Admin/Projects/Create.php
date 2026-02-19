@@ -13,7 +13,9 @@ class Create extends Component
     protected $rules=[
         'title'=>'required',
         'description'=>'required',
-        'image'=>'image|max:2048'
+        'image'=>'image|max:2048',
+        'github'=>'url|required',
+        'live_link'=>'url|nullable'
     ];
 
     public function save(){

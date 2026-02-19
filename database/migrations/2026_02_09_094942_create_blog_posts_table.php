@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->longText('content');
             $table->string('image')->nullable();
-            $table->boolean('is_published')->default('false');
+            $table->boolean('is_published')->default(false);
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
