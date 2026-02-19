@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
     zip \
     curl \
     npm \
+    libpq-dev \
     && docker-php-ext-install pdo_pgsql mbstring zip bcmath
 
 # Install Composer
