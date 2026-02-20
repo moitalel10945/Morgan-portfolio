@@ -40,8 +40,8 @@ RUN mkdir -p storage bootstrap/cache \
 RUN composer install --no-dev --optimize-autoloader
 
 # Install frontend dependencies and build assets
-RUN npm install
-RUN npx vite build
+RUN npm ci
+RUN npm run build
 
 # Apache settings for Laravel
 RUN sed -i 's#/var/www/html#/var/www/html/public#g' /etc/apache2/sites-available/000-default.conf \
