@@ -31,7 +31,7 @@ COPY . .
 # Install PHP dependencies and build frontend
 RUN composer install --optimize-autoloader --no-dev \
     && npm install && npm run build \
-    && chown -R www-data:www-data storage bootstrap/cache
+    && chown -R www-data:www-data storage bootstrap/cache \
     && php artisan view:clear \
     && php artisan route:clear \
     && php artisan config:clear \
