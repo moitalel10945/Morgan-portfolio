@@ -12,19 +12,19 @@ ENV VITE_DEV_SERVER_URL=
 # Set working directory
 WORKDIR /var/www/html
 
-# Install system dependencies + Node 20
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    git \
-    unzip \
-    libonig-dev \
-    libzip-dev \
-    zip \
-    curl \
-    libpq-dev \
-    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt-get install -y nodejs \
+    git unzip libonig-dev libzip-dev zip curl libpq-dev \
     && docker-php-ext-install pdo_pgsql mbstring zip bcmath \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install Node 20 separately
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+RUN apt-get install -y nodejs
+
+# Verify Node & npm are installed
+RUN node -v
+RUN npm -v
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
