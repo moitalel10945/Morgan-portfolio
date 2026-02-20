@@ -40,12 +40,12 @@ RUN npm install
 RUN npm run build
 
 # Clear and cache Laravel config, routes, views
-RUN php artisan config:clear \
-    && php artisan cache:clear \
-    && php artisan route:clear \
-    && php artisan view:clear \
-    && php artisan config:cache \
-    && php artisan route:cache
+RUN php artisan config:clear --no-interaction \
+    && php artisan cache:clear --no-interaction \
+    && php artisan route:clear --no-interaction \
+    && php artisan view:clear --no-interaction \
+    && php artisan config:cache --no-interaction \
+    && php artisan route:cache --no-interaction
 
 # Apache settings for Laravel
 RUN sed -i 's#/var/www/html#/var/www/html/public#g' /etc/apache2/sites-available/000-default.conf \
