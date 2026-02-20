@@ -4,7 +4,6 @@
 # -------------------------------
 
 FROM php:8.2-apache
-ENV APP_ENV=production
 ENV APP_DEBUG=false
 ENV NODE_ENV=production
 ENV VITE_DEV_SERVER_URL=
