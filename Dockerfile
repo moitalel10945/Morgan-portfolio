@@ -39,14 +39,6 @@ RUN composer install --no-dev --optimize-autoloader
 RUN npm install
 RUN npm run build
 
-# Clear and cache Laravel config, routes, views
-RUN php artisan config:clear --no-interaction \
-    && php artisan cache:clear --no-interaction \
-    && php artisan route:clear --no-interaction \
-    && php artisan view:clear --no-interaction \
-    && php artisan config:cache --no-interaction \
-    && php artisan route:cache --no-interaction
-
 # Apache settings for Laravel
 RUN sed -i 's#/var/www/html#/var/www/html/public#g' /etc/apache2/sites-available/000-default.conf \
     && a2enmod rewrite \
@@ -55,5 +47,10 @@ RUN sed -i 's#/var/www/html#/var/www/html/public#g' /etc/apache2/sites-available
 # Expose port 80
 EXPOSE 80
 
-# Start Apache in the foreground
-CMD ["apache2-foreground"]
+# Clear and cache Laravel config, routes, views
+CMD php artisan config:cache --no-interaction && \
+    php artisan route:cache --no-interaction && \
+    php artisan view:cache --no-interaction && \
+    apache2-foreground
+
+
