@@ -4,6 +4,10 @@
 # -------------------------------
 
 FROM php:8.2-apache
+ENV APP_ENV=production
+ENV APP_DEBUG=false
+ENV NODE_ENV=production
+ENV VITE_DEV_SERVER_URL=
 
 # Set working directory
 WORKDIR /var/www/html
@@ -50,7 +54,7 @@ EXPOSE 80
 # Clear and cache Laravel config, routes, views
 CMD php artisan config:cache --no-interaction && \
     php artisan route:cache --no-interaction && \
-    php artisan view:cache --no-interaction && \
+    php artisan view:clear && \
     apache2-foreground
 
 
