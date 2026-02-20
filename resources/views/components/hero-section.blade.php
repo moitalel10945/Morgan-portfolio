@@ -18,7 +18,7 @@ new class extends Component
     </div>
     </div>
     <div>
-        <img src="{{asset('storage/images/me.jpg')}}" class="border-4 border-white shadow-2xl object-cover rounded-2xl relative w-72 md:w-96 lg:w-[420px] ">
+        <img src="{{asset('images/me.jpg')}}" class="border-4 border-white shadow-2xl object-cover rounded-2xl relative w-72 md:w-96 lg:w-[420px] ">
         <div class="mt-8 flex justify-center md:justify-start gap-8">
 
             <!-- GitHub -->
