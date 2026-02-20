@@ -32,11 +32,18 @@ COPY . .
 RUN composer install --optimize-autoloader --no-dev \
     && npm install && npm run build \
     && chown -R www-data:www-data storage bootstrap/cache
-
+    && php artisan view:clear \
+    && php artisan route:clear \
+    && php artisan config:clear \
+    && php artisan cache:clear \
+    && php artisan config:cache \
+    && php artisan route:cache
 # Apache settings for Laravel
 RUN sed -i 's#/var/www/html#/var/www/html/public#g' /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+
 
 # Expose port 80
 EXPOSE 80
