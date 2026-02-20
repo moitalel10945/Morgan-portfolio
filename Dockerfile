@@ -28,25 +28,32 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Copy project files
 COPY . .
 
-# Install PHP dependencies and build frontend
-RUN composer install --optimize-autoloader --no-dev \
-    && npm install && npm run build \
-    && chown -R www-data:www-data storage bootstrap/cache \
-    && php artisan view:clear \
-    && php artisan route:clear \
-    && php artisan config:clear \
+# Ensure storage and bootstrap/cache exist and are writable
+RUN mkdir -p storage bootstrap/cache \
+    && chown -R www-data:www-data storage bootstrap/cache
+
+# Install PHP dependencies (no dev) and optimize autoloader
+RUN composer install --no-dev --optimize-autoloader
+
+# Install frontend dependencies and build assets
+RUN npm install
+RUN npm run build
+
+# Clear and cache Laravel config, routes, views
+RUN php artisan config:clear \
     && php artisan cache:clear \
+    && php artisan route:clear \
+    && php artisan view:clear \
     && php artisan config:cache \
     && php artisan route:cache
+
 # Apache settings for Laravel
-RUN sed -i 's#/var/www/html#/var/www/html/public#g' /etc/apache2/sites-available/000-default.conf
-RUN a2enmod rewrite
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
-
-
+RUN sed -i 's#/var/www/html#/var/www/html/public#g' /etc/apache2/sites-available/000-default.conf \
+    && a2enmod rewrite \
+    && echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Expose port 80
 EXPOSE 80
 
-# Start Apache
+# Start Apache in the foreground
 CMD ["apache2-foreground"]
