@@ -39,7 +39,7 @@ RUN mkdir -p storage bootstrap/cache \
 RUN composer install --no-dev --optimize-autoloader
 
 # Install frontend dependencies and build assets
-RUN npm ci
+RUN npm ci --include=dev
 RUN npm run build
 
 # Apache settings for Laravel
