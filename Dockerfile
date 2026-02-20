@@ -38,6 +38,9 @@ RUN mkdir -p storage bootstrap/cache \
 # Install PHP dependencies (no dev) and optimize autoloader
 RUN composer install --no-dev --optimize-autoloader
 
+# Create storage symlink
+RUN php artisan storage:link
+
 # Install frontend dependencies and build assets
 RUN npm ci --include=dev
 RUN npm run build
