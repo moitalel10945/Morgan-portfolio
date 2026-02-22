@@ -13,17 +13,15 @@
               </p>
           @endif
 
-          <div class=" grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div class=" grid gap-8 md:grid-cols-2 lg:grid-cols-3 mt-10">
 
               @foreach ($posts as $post)
                   <a href="{{ route('blog.show', $post->slug) }}"
                      class="bg-card rounded-xl shadow-sm hover:shadow-md transition duration-300 overflow-hidden flex flex-col">
-
-                      @if ($post->image)
-                          <img src="{{ asset('storage/' . $post->image) }}"
-                               class="h-48 w-full object-cover">
-                      @endif
-
+                     <div class="h-48 w-full bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 
+                     flex items-center justify-center text-white text-3xl font-bold">
+             {{ strtoupper($post->title) }}
+            </div>
                       <div class="p-6 flex flex-col flex-1">
 
                           <h2 class="font-semibold text-lg text-gray-900">

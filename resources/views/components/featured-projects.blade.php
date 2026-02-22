@@ -14,7 +14,10 @@ new class extends Component
 <div class="grid md:grid-cols-2 gap-8 lg:grid-cols-3 mt-4">
     @foreach ($this->projects as $project)
     <div class="bg-card rounded-xl shadow-sm hover:shadow-md transition duration-300 flex flex-col overflow-hidden">
-        <img src="{{ asset('storage/'.$project->image) }}" class="h-48 w-full object-cover">
+        <div class="h-48 w-full bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 
+            flex items-center justify-center text-white text-3xl font-bold">
+    {{ strtoupper($project->title) }}
+</div>
 
         <div class="p-6 flex flex-col flex-1">
             <h3 class="font-semibold text-lg text-gray-900">{{ $project->title }}</h3>
