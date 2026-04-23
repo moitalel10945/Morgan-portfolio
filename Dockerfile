@@ -54,9 +54,10 @@ RUN sed -i 's#/var/www/html#/var/www/html/public#g' /etc/apache2/sites-available
 EXPOSE 80
 
 # Clear and cache Laravel config, routes, views
-CMD php artisan config:cache --no-interaction && \
-    php artisan route:cache --no-interaction && \
-    php artisan view:clear && \
+CMD php artisan config:clear && \
+    php artisan migrate --force && \
+    php artisan config:cache && \
+    php artisan route:cache && \
     apache2-foreground
 
 
