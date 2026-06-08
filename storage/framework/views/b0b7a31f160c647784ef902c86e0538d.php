@@ -1,0 +1,1 @@
+projet-<?php echo e($project->id); ?><?php /**PATH C:\Users\Administrator\Desktop\portfolio\storage\framework\views/c002e2ee6c9330c37b3a73aa15c95fce.blade.php ENDPATH**/ ?>

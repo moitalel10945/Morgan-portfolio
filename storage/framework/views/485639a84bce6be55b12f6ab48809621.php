@@ -6,7 +6,8 @@
           <!-- Brand -->
           <div>
               <h2 class="text-xl font-bold text-white">
-                  {{ config('app.name') }}
+                  <?php echo e(config('app.name')); ?>
+
               </h2>
               <p class="mt-3 text-sm text-gray-400">
                   Software Developer passionate about building modern,
@@ -74,8 +75,8 @@
       </div>
 
       <div class="border-t border-gray-800 mt-8 pt-6 text-center text-sm text-gray-500">
-          © {{ date('Y') }} {{ config('app.name') }}. All rights reserved.
+          © <?php echo e(date('Y')); ?> <?php echo e(config('app.name')); ?>. All rights reserved.
       </div>
 
   </div>
-</footer>
+</footer><?php /**PATH C:\Users\Administrator\Desktop\portfolio\resources\views/components/footer.blade.php ENDPATH**/ ?>

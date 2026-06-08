@@ -26,7 +26,7 @@ new class extends Component
         
         <div class="flex gap-4 mt-6">
             <a href="{{ $project->github_url }}" target="_blank" class="text-primary font-medium hover:underline">GitHub</a>
-            <a href="{{ $project->live_link }}" target="_blank" class="text-primary font-medium hover:underline">Live</a>
+            <a href="{{ $project->live_url }}" target="_blank" class="text-primary font-medium hover:underline">Live</a>
         </div>
     </div>
     @endforeach
